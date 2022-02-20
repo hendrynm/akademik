@@ -1,11 +1,10 @@
 @extends("_layout.master")
-@section("title","Beranda")
+@section("title","Beranda Daftar Peserta")
 
 @section("konten")
     <div class="container">
         <div class="bg-light p-5 rounded-lg m-3">
-            <h1 class="display-4"><b>Selamat Datang</b></h1>
-            <p class="display-6">Pengambilan data Sistem Informasi Akademik</p>
+            <p class="display-6"><b>MAAF YA MENU INI BELUM TERSEDIA :(</b></p>
             <hr class="my-1">
             <div class="mt-3">
                 <a class="btn btn-primary" href="/" role="button">Beranda</a>
@@ -15,6 +14,13 @@
                 <a class="btn btn-primary" href="/nilai" role="button">Nilai Mahasiswa per Semester</a>
             </div>
             <hr class="my-1 mt-3">
+        </div>
+    </div>
+    <div class="container">
+        <div class="bg-light p-5 rounded-lg m-3">
+            <form action="/cek" method="post">
+
+            </form>
         </div>
     </div>
 @endsection

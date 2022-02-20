@@ -13,6 +13,8 @@
     @section("konten")
     @show
 
+    @include("_partial.foot")
+
     @section("js")
     @show
 

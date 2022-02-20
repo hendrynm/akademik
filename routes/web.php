@@ -15,11 +15,38 @@ use App\Http\Controllers\PesertaControl;
 |
 */
 
-Route::get("/",[SiakadControl::class,"index"]);
+Route::get("/",[SiakadControl::class,"index"])
+    ->name("index");
+Route::get("/ajax-daftar_matkul/{id_prodi}",[SiakadControl::class,"daftar_matkul"])
+    ->name("ajax.matkul");
 
 Route::prefix("/peserta")
     ->controller(PesertaControl::class)
     ->group(function ()
     {
+        Route::get("/","index")
+            ->name("peserta.index");
+        Route::post("/cek","cek")
+            ->name("peserta.cek");
+    });
 
+Route::prefix("/presensi-mhs")
+    ->controller(SiakadControl::class)
+    ->group(function ()
+    {
+        Route::get("/","ups");
+    });
+
+Route::prefix("/presensi-dosen")
+    ->controller(SiakadControl::class)
+    ->group(function ()
+    {
+        Route::get("/","ups");
+    });
+
+Route::prefix("/nilai")
+    ->controller(SiakadControl::class)
+    ->group(function ()
+    {
+        Route::get("/","ups");
     });
