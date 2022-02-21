@@ -2,28 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PesertaModel;
 use App\Models\SiakadModel;
 use Illuminate\Http\Request;
 
-class PesertaControl extends Controller
+class PresensiMhsControl extends Controller
 {
     public function index()
     {
-        $prodi = (new SiakadModel)->daftar_prodi();
-        return view("peserta.index",["prodi"=>$prodi]);
+        return view("presensi_mhs.index");
     }
 
     public function cek(Request $request)
     {
-        $prodi = $request->prodi;
         $matkul = $request->matkul;
         $smt = $request->smt;
         $tahun = $request->tahun;
         $kelas = $request->kelas;
-        $log = $request->log;
         $sess = $request->phpsess;
-        $link = "https://akademik.its.ac.id/lv_peserta.php?mkJur=".$prodi."&mkID=".$matkul."&mkSem=".$smt."&mkThn=".$tahun."&mkKelas=".$kelas."&mkLog=".$log;
+        $link = "https://akademik.its.ac.id/list_presensi_mahasiswa.php?id=2018|".$matkul."|".$tahun."|".$smt."|".$kelas;
 
         $options = array(
             'http'=>array(
@@ -47,17 +43,16 @@ class PesertaControl extends Controller
 
         if($dataHeader !== null)
         {
-            $dataMatkul = $dataHeader[1];
-            $total_rec = count($dataHeader)-5;
-            for($i = 3 ; $i < $total_rec ; $i++)
+            $matkul_raw = explode("Mata Kuliah (Kelas):",$dataHeader[2]);
+            $matkul = substr($matkul_raw[1],13);
+            $total_rec = count($dataHeader);
+            for($i = 2 ; $i < $total_rec ; $i++)
             {
                 $dataDetail[$i] = explode("\n\t\t",$dataHeader[$i]);
             }
-            return ($log === '0') ?
-                view("peserta.no_log",["data"=>$dataDetail,"matkul"=>$dataMatkul]) :
-                view("peserta.log",["data"=>$dataDetail,"matkul"=>$dataMatkul]);
+            return view("presensi_mhs.hasil",["data"=>$dataDetail,"matkul"=>$matkul]);
         }
-        return redirect(route("peserta.index"))
-            ->with("error","PHPSESSID yang dimasukkan salah atau tidak valid!");
+        return redirect(route("pre-mhs.index"))
+        ->with("error","PHPSESSID yang dimasukkan salah atau tidak valid!");
     }
 }

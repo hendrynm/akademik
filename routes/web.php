@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiakadControl;
 use App\Http\Controllers\PesertaControl;
+use App\Http\Controllers\PresensiMhsControl;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,13 @@ Route::prefix("/peserta")
     });
 
 Route::prefix("/presensi-mhs")
-    ->controller(SiakadControl::class)
+    ->controller(PresensiMhsControl::class)
     ->group(function ()
     {
-        Route::get("/","ups");
+        Route::get("/","index")
+            ->name("pre-mhs.index");
+        Route::post("/cek","cek")
+            ->name("pre-mhs.cek");
     });
 
 Route::prefix("/presensi-dosen")

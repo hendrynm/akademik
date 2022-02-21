@@ -52,33 +52,5 @@
                 url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
             }
         });
-
-        $('#prodi').change(function()
-        {
-            let prodi = $(this).val();
-            let matkul = $("#matkul");
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: '/ajax-daftar_matkul/' + prodi,
-                    dataType: 'JSON',
-                    success: function(data)
-                        {
-                            if(data)
-                            {
-                                $(matkul).empty();
-                                $(matkul).append('<option selected disabled value="">-- Pilih salah satu --</option>')
-                                $.each(data,function(i){
-                                    $(matkul).append('<option value="' + data[i].kode_matkul + '">' +
-                                        data[i].kode_matkul + " - " + data[i].nama_matkul + '</option>');
-                                });
-                            }
-                            else
-                            {
-                                alert("PENGAMBILAN DATA GAGAL");
-                            }
-                        }
-                })
-        });
     </script>
 @endsection

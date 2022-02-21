@@ -4,7 +4,7 @@
 @section("konten")
     <div class="container">
         <div class="bg-light p-5 rounded-lg m-3">
-            <p class="display-6"><b>Daftar Peserta per Mata Kuliah</b></p>
+            <p class="display-6"><b>Presensi Mahasiswa per Mata Kuliah</b></p>
             <hr class="my-1">
             <div class="mt-3">
                 <a class="btn btn-primary" href="/" role="button">Beranda</a>
@@ -30,7 +30,7 @@
                 </div>
             @endif
 
-            <form action="{{ route("peserta.cek") }}" method="post">
+            <form action="{{ route("pre-mhs.cek") }}" method="post">
                 @csrf
                 <div class="form-group col-lg-5">
                     <label class="form-label" for="phpsess"><b>PHPSESSID</b></label>
@@ -62,9 +62,8 @@
                     <label class="form-label" for="prodi"><b>Program Studi</b></label>
                     <select class="form-select" id="prodi" name="prodi" required>
                         <option selected disabled value="">-- Pilih --</option>
-                        @foreach($prodi as $p)
-                            <option value="{{ $p->id_prodi }}">{{ $p->nama_prodi }}</option>
-                        @endforeach
+                        <option value="52100">S-1 SISTEM INFORMASI</option>
+                        <option value="52102">S-1 SISTEM INFORMASI KELAS INTERNASIONAL</option>
                     </select>
                 </div>
                 <br>
@@ -121,20 +120,6 @@
                                 <option value="{{ $int }}">{{ $int }}</option>
                             @endforeach
                         </optgroup>
-                        <optgroup label="MBKM">
-                            <option value="MPB">MPB (MBKM ITS)</option>
-                            <option value="M00">M00 (MBKM Dept.)</option>
-                            <option value="_">_ (MBKM SI)</option>
-                        </optgroup>
-                    </select>
-                </div>
-                <br>
-                <div class="form-group col-sm-3">
-                    <label class="form-label" for="log"><b>Tampilkan Waktu Ambil Matkul</b></label>
-                    <select class="form-select" id="log" name="log" required>
-                        <option selected disabled value="">-- Pilih --</option>
-                        <option value="0">Sembunyikan</option>
-                        <option value="1">Tampilkan</option>
                     </select>
                 </div>
                 <br>

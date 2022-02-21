@@ -19,6 +19,9 @@
 
             <hr class="my-1 mt-3 mb-3">
 
+            @if(count($data[3]) === 1)
+                <p class="display-6"><b>Data Tidak Ditemukan 😭</b></p>
+            @else
             <table class="table table-striped table-hover" id="data">
                 <thead>
                 <tr>
@@ -39,6 +42,7 @@
                 @endforeach
                 </tbody>
             </table>
+            @endif
         </div>
     </div>
 @endsection
@@ -49,34 +53,6 @@
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
             }
-        });
-
-        $('#prodi').change(function()
-        {
-            let prodi = $(this).val();
-            let matkul = $("#matkul");
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: '/ajax-daftar_matkul/' + prodi,
-                    dataType: 'JSON',
-                    success: function(data)
-                        {
-                            if(data)
-                            {
-                                $(matkul).empty();
-                                $(matkul).append('<option selected disabled value="">-- Pilih salah satu --</option>')
-                                $.each(data,function(i){
-                                    $(matkul).append('<option value="' + data[i].kode_matkul + '">' +
-                                        data[i].kode_matkul + " - " + data[i].nama_matkul + '</option>');
-                                });
-                            }
-                            else
-                            {
-                                alert("PENGAMBILAN DATA GAGAL");
-                            }
-                        }
-                })
         });
     </script>
 @endsection

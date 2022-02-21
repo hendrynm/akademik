@@ -18,6 +18,8 @@
     @section("js")
     @show
 
-    <div class="d-flex align-items-center justify-content-center">Copyright (c) 2022 | Created by HNM Bot | Support by Tekan.ID</div>
+    <div class="d-flex align-items-center justify-content-center mb-3">
+        Copyright (c) 2022 | Created by HNM Bot | Support by Tekan.ID | Kebijakan Privasi
+    </div>
 </body>
 </html>
