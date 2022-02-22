@@ -1,5 +1,5 @@
 @extends("_layout.master")
-@section("title","Beranda Daftar Peserta")
+@section("title","Daftar Peserta $matkul")
 
 @section("konten")
     <div class="container">
@@ -8,15 +8,7 @@
             <p class="display-4"><b>{{ $matkul }}</b></p>
 
             <hr class="my-1">
-
-            <div class="mt-3">
-                <a class="btn btn-primary" href="/" role="button">Beranda</a>
-                <a class="btn btn-primary" href="/peserta" role="button">Daftar Peserta per Mata Kuliah</a>
-                <a class="btn btn-primary" href="/presensi-mhs" role="button">Presensi Mahasiswa per Mata Kuliah</a>
-                <a class="btn btn-primary" href="/presensi-dosen" role="button">Presensi Dosen per Mata Kuliah</a>
-                <a class="btn btn-primary" href="/nilai" role="button">Nilai Mahasiswa per Semester</a>
-            </div>
-
+            <x-navbar></x-navbar>
             <hr class="my-1 mt-3 mb-3">
 
             <table class="table table-striped table-hover" id="data">

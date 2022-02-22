@@ -1,26 +1,17 @@
 @extends("_layout.master")
-@section("title","Beranda Daftar Peserta")
+@section("title","Beranda Daftar Presensi Dosen")
 
 @section("konten")
     <div class="container">
         <div class="bg-light p-5 rounded-lg m-3">
-            <p class="display-6"><b>Daftar Peserta per Mata Kuliah</b></p>
+            <p class="display-6"><b>Presensi Dosen per Mata Kuliah</b></p>
             <hr class="my-1">
             <x-navbar></x-navbar>
             <hr class="my-1 mt-3 mb-3">
             <x-alert_error></x-alert_error>
 
-            <form action="{{ route("peserta.cek") }}" method="post">
+            <form action="{{ route("pre-dosen.cek") }}" method="post">
                 <x-form_default></x-form_default>
-                <div class="form-group col-sm-3">
-                    <label class="form-label" for="log"><b>Tampilkan Waktu Ambil Matkul</b></label>
-                    <select class="form-select" id="log" name="log" required>
-                        <option selected disabled value="">-- Pilih --</option>
-                        <option value="0">Sembunyikan</option>
-                        <option value="1">Tampilkan</option>
-                    </select>
-                </div>
-                <br>
                 <button type="submit" class="btn btn-primary btn-lg">Tampilkan Data</button>
             </form>
         </div>

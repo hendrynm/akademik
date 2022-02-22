@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiakadControl;
 use App\Http\Controllers\PesertaControl;
 use App\Http\Controllers\PresensiMhsControl;
+use App\Http\Controllers\PresensiDosenControl;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,10 +43,13 @@ Route::prefix("/presensi-mhs")
     });
 
 Route::prefix("/presensi-dosen")
-    ->controller(SiakadControl::class)
+    ->controller(PresensiDosenControl::class)
     ->group(function ()
     {
-        Route::get("/","ups");
+        Route::get("/","index")
+            ->name("pre-dosen.index");
+        Route::post("/cek","cek")
+            ->name("pre-dosen.cek");
     });
 
 Route::prefix("/nilai")

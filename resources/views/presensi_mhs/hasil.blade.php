@@ -1,5 +1,5 @@
 @extends("_layout.master")
-@section("title","Beranda Daftar Peserta")
+@section("title","Presensi Mahasiswa $matkul")
 
 @section("konten")
     <div class="container">
@@ -8,18 +8,10 @@
             <p class="display-4"><b>{{ $matkul }}</b></p>
 
             <hr class="my-1">
-
-            <div class="mt-3">
-                <a class="btn btn-primary" href="/" role="button">Beranda</a>
-                <a class="btn btn-primary" href="/peserta" role="button">Daftar Peserta per Mata Kuliah</a>
-                <a class="btn btn-primary" href="/presensi-mhs" role="button">Presensi Mahasiswa per Mata Kuliah</a>
-                <a class="btn btn-primary" href="/presensi-dosen" role="button">Presensi Dosen per Mata Kuliah</a>
-                <a class="btn btn-primary" href="/nilai" role="button">Nilai Mahasiswa per Semester</a>
-            </div>
-
+            <x-navbar></x-navbar>
             <hr class="my-1 mt-3 mb-3">
 
-            <table class="table table-striped table-hover" id="data" style="font-size:12px">
+            <table class="table table-striped table-hover" id="data" style="font-size:12px;width:100%">
                 <thead align="center">
                 <tr>
                     <td rowspan="2"><strong>No.</strong></td>
@@ -34,9 +26,13 @@
                             <td>
                                 <span><b>{{ $data[5][$i] }}</b></span><br>
                                 <span style="font-size:10px">{{ $data[5][$i+1] }}<br></span>
-                                {!! strpos(($data[5][$i+2]),"ONLINE") === 0 ?
-                                    "<span style='color:green;font-size:10px'><b>".$data[5][$i+2]."</b></span>" :
-                                    "<span style='color:grey;font-size:10px'><b>".$data[5][$i+2]."</b></span>" !!}
+                                @if(substr(($data[5][$i+2]),0,6) === "ONLINE")
+                                    <span style='color:green;font-size:10px'><b>{{ $data[5][$i+2] }}</b></span>
+                                @elseif(substr(($data[5][$i+2]),0,6) === "HYBRID")
+                                    <span style='color:tomato;font-size:10px'><b>{{ $data[5][$i+2] }}</b></span>
+                                @else
+                                    <span style='color:grey;font-size:10px'><b>{{ $data[5][$i+2] }}</b></span>
+                                @endif
                             </td>
                         @endif
                     @endfor
