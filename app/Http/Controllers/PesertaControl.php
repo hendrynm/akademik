@@ -37,14 +37,14 @@ class PesertaControl extends Controller
 
         $DOM = new \DOMDocument();
         @$DOM->loadHTML($htmlContent);
-
+        print_r($DOM);
         $Header = $DOM->getElementsByTagName('tr');
         $dataHeader = null;
         foreach($Header as $NodeHeader)
         {
             $dataHeader[] = trim($NodeHeader->textContent);
         }
-
+        print_r($dataHeader);
         if($dataHeader !== null)
         {
             $dataMatkul = $dataHeader[1];

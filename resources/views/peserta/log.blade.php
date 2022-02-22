@@ -28,7 +28,7 @@
                         <td>{{ $d[1] }}</td>
                         <td>{{ $d[2] }}</td>
                         <td>{{ $d[3] }}</td>
-                        <td>{{ $d[4] }}</td>
+                        <td>{{ array_key_last($d) === 4 ? $d[4] : "" }}</td>
                     </tr>
                 @endforeach
                 </tbody>
